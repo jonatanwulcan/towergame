@@ -23,6 +23,11 @@
 		93C69E3216907B65004F42FD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C69E3116907B65004F42FD /* ViewController.m */; };
 		93C69E3516907B65004F42FD /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93C69E3316907B65004F42FD /* ViewController_iPhone.xib */; };
 		93C69E3816907B65004F42FD /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93C69E3616907B65004F42FD /* ViewController_iPad.xib */; };
+		93C9A02516907C82006A7068 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C9A02016907C82006A7068 /* Game.m */; };
+		93C9A02616907C82006A7068 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C9A02216907C82006A7068 /* Level.m */; };
+		93C9A02716907C82006A7068 /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C9A02416907C82006A7068 /* Sprite.m */; };
+		93C9A02B16907CB8006A7068 /* monster.png in Resources */ = {isa = PBXBuildFile; fileRef = 93C9A02916907CB8006A7068 /* monster.png */; };
+		93C9A02C16907CB8006A7068 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 93C9A02A16907CB8006A7068 /* test.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +52,15 @@
 		93C69E3116907B65004F42FD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		93C69E3416907B65004F42FD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		93C69E3716907B65004F42FD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		93C9A01E16907C82006A7068 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		93C9A01F16907C82006A7068 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		93C9A02016907C82006A7068 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		93C9A02116907C82006A7068 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		93C9A02216907C82006A7068 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		93C9A02316907C82006A7068 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		93C9A02416907C82006A7068 /* Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sprite.m; sourceTree = "<group>"; };
+		93C9A02916907CB8006A7068 /* monster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = monster.png; path = ../../jumpgame/jumpgame/monster.png; sourceTree = "<group>"; };
+		93C9A02A16907CB8006A7068 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test.png; path = ../../jumpgame/jumpgame/test.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +111,15 @@
 		93C69E1A16907B64004F42FD /* towergame */ = {
 			isa = PBXGroup;
 			children = (
+				93C9A01E16907C82006A7068 /* common.h */,
+				93C9A02916907CB8006A7068 /* monster.png */,
+				93C9A02A16907CB8006A7068 /* test.png */,
+				93C9A01F16907C82006A7068 /* Game.h */,
+				93C9A02016907C82006A7068 /* Game.m */,
+				93C9A02116907C82006A7068 /* Level.h */,
+				93C9A02216907C82006A7068 /* Level.m */,
+				93C9A02316907C82006A7068 /* Sprite.h */,
+				93C9A02416907C82006A7068 /* Sprite.m */,
 				93C69E2316907B64004F42FD /* AppDelegate.h */,
 				93C69E2416907B64004F42FD /* AppDelegate.m */,
 				93C69E2C16907B65004F42FD /* Shader.fsh */,
@@ -183,6 +206,8 @@
 				93C69E2F16907B65004F42FD /* Shader.vsh in Resources */,
 				93C69E3516907B65004F42FD /* ViewController_iPhone.xib in Resources */,
 				93C69E3816907B65004F42FD /* ViewController_iPad.xib in Resources */,
+				93C9A02B16907CB8006A7068 /* monster.png in Resources */,
+				93C9A02C16907CB8006A7068 /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +221,9 @@
 				93C69E2116907B64004F42FD /* main.m in Sources */,
 				93C69E2516907B64004F42FD /* AppDelegate.m in Sources */,
 				93C69E3216907B65004F42FD /* ViewController.m in Sources */,
+				93C9A02516907C82006A7068 /* Game.m in Sources */,
+				93C9A02616907C82006A7068 /* Level.m in Sources */,
+				93C9A02716907C82006A7068 /* Sprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +350,7 @@
 				93C69E3D16907B65004F42FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
