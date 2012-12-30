@@ -1,91 +1,54 @@
 //
 //  ViewController.m
-//  towergame
+//  wordgame
 //
-//  Created by Jonatan Wulcan on 2012-12-30.
-//  Copyright (c) 2012 Jonatan Wulcan. All rights reserved.
+//  Created by Jonatan Wulcan on 2012-12-09.
+//  Copyright (c) 2012 Wulcan Consulting. All rights reserved.
 //
 
+#import "common.h"
+
 #import "ViewController.h"
+#import "Sprite.h"
+#import "Game.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
-// Uniform index.
-enum
-{
-    UNIFORM_MODELVIEWPROJECTION_MATRIX,
-    UNIFORM_NORMAL_MATRIX,
-    NUM_UNIFORMS
-};
+// Externs index.
 GLint uniforms[NUM_UNIFORMS];
+float screenWidth;
+float screenHeight;
+float cameraX = 0;
+float cameraY = 0;
 
-// Attribute index.
-enum
-{
-    ATTRIB_VERTEX,
-    ATTRIB_NORMAL,
-    NUM_ATTRIBUTES
-};
 
-GLfloat gCubeVertexData[216] = 
+Sprite* sprites[NUM_SPRITES];
+
+GLfloat vertexData[] =
 {
-    // Data layout for each line below is:
-    // positionX, positionY, positionZ,     normalX, normalY, normalZ,
-    0.5f, -0.5f, -0.5f,        1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, -0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, -0.5f,          1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    
-    0.5f, 0.5f, -0.5f,         0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 1.0f, 0.0f,
-    
-    -0.5f, 0.5f, -0.5f,        -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        -1.0f, 0.0f, 0.0f,
-    
-    -0.5f, -0.5f, -0.5f,       0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, -1.0f, 0.0f,
-    
-    0.5f, 0.5f, 0.5f,          0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, 0.0f, 1.0f,
-    
-    0.5f, -0.5f, -0.5f,        0.0f, 0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
-    0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
-    0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 0.0f, -1.0f
+    -0.5f, -0.5f, 0,
+    0.5f, -0.5f, 0,
+    -0.5f, 0.5f, 0,
+    -0.5f, 0.5f, 0,
+    0.5f, -0.5f, 0,
+    0.5f, 0.5f, 0,
 };
 
 @interface ViewController () {
     GLuint _program;
     
-    GLKMatrix4 _modelViewProjectionMatrix;
-    GLKMatrix3 _normalMatrix;
-    float _rotation;
-    
     GLuint _vertexArray;
     GLuint _vertexBuffer;
+    
+    GLKTextureInfo* _texture0;
+    GLKTextureInfo* _texture1;
+    
+    uint64_t _fpsTimer;
+    int _fpsNumFrames;
+    
+    Game* _game;
 }
 @property (strong, nonatomic) EAGLContext *context;
-@property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -98,11 +61,14 @@ GLfloat gCubeVertexData[216] =
 
 @implementation ViewController
 
+@synthesize context = _context;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    self.preferredFramesPerSecond = 60;
 
     if (!self.context) {
         NSLog(@"Failed to create ES context");
@@ -112,34 +78,30 @@ GLfloat gCubeVertexData[216] =
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
+    _fpsTimer = mach_absolute_time();
+    _fpsNumFrames = 0;
+    
     [self setupGL];
+    
+    _game = [[Game alloc] init];
 }
 
-- (void)dealloc
+- (void)viewDidUnload
 {    
+    [super viewDidUnload];
+    
     [self tearDownGL];
     
-    if ([EAGLContext currentContext] == self.context) {
-        [EAGLContext setCurrentContext:nil];
-    }
+    [EAGLContext setCurrentContext:nil];
+	self.context = nil;
 }
 
-- (void)didReceiveMemoryWarning
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    [super didReceiveMemoryWarning];
-
-    if ([self isViewLoaded] && ([[self view] window] == nil)) {
-        self.view = nil;
-        
-        [self tearDownGL];
-        
-        if ([EAGLContext currentContext] == self.context) {
-            [EAGLContext setCurrentContext:nil];
-        }
-        self.context = nil;
+    if(interfaceOrientation == UIInterfaceOrientationPortrait) {
+        return YES;
     }
-
-    // Dispose of any resources that can be recreated.
+    return NO;
 }
 
 - (void)setupGL
@@ -148,36 +110,49 @@ GLfloat gCubeVertexData[216] =
     
     [self loadShaders];
     
-    self.effect = [[GLKBaseEffect alloc] init];
-    self.effect.light0.enabled = GL_TRUE;
-    self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
-    
-    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     glGenVertexArraysOES(1, &_vertexArray);
     glBindVertexArrayOES(_vertexArray);
     
     glGenBuffers(1, &_vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
     
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
-    glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
+    glEnableVertexAttribArray(ATTRIB_VERTEX);
+    glVertexAttribPointer(ATTRIB_VERTEX, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+        
+    _texture0 = [GLKTextureLoader
+                 textureWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"png"]
+                 options:nil
+                 error: NULL];
+    _texture1 = [GLKTextureLoader
+                 textureWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"monster" ofType:@"png"]
+                 options:nil
+                 error:NULL];
     
-    glBindVertexArrayOES(0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(_texture0.target, _texture0.name);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(_texture1.target, _texture1.name);
+    
+    // Setup sprites
+    sprites[SPRITE_FLOOR] = [[Sprite alloc] initWithTextureX:70 textureY:-50 width:32 height:32 texture:1];
 }
 
 - (void)tearDownGL
 {
     [EAGLContext setCurrentContext:self.context];
     
+    GLuint name = _texture0.name;
+    glDeleteTextures(1, &name);
+    name = _texture1.name;
+    glDeleteTextures(1, &name);
+    
     glDeleteBuffers(1, &_vertexBuffer);
     glDeleteVertexArraysOES(1, &_vertexArray);
-    
-    self.effect = nil;
-    
+        
     if (_program) {
         glDeleteProgram(_program);
         _program = 0;
@@ -186,54 +161,33 @@ GLfloat gCubeVertexData[216] =
 
 #pragma mark - GLKView and GLKViewController delegate methods
 
-- (void)update
-{
-    float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
-    
-    self.effect.transform.projectionMatrix = projectionMatrix;
-    
-    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -4.0f);
-    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 0.0f, 1.0f, 0.0f);
-    
-    // Compute the model view matrix for the object rendered with GLKit
-    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -1.5f);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
-    
-    self.effect.transform.modelviewMatrix = modelViewMatrix;
-    
-    // Compute the model view matrix for the object rendered with ES2
-    modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, 1.5f);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
-    
-    _normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
-    
-    _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
-    
-    _rotation += self.timeSinceLastUpdate * 0.5f;
+- (void)update {
+    [_game update];
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    // Check fps
+    _fpsNumFrames++;
+    uint64_t elapsed = mach_absolute_time() - _fpsTimer;
+    mach_timebase_info_data_t sTimebaseInfo;
+    mach_timebase_info(&sTimebaseInfo);
+    uint64_t ms = elapsed * sTimebaseInfo.numer / sTimebaseInfo.denom/1000/1000;
+    if(ms > 1000) {
+        NSLog(@"fps: %d", _fpsNumFrames);
+        _fpsTimer = mach_absolute_time();
+        _fpsNumFrames = 0;
+    }
     
+    // Draw
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
     glBindVertexArrayOES(_vertexArray);
-    
-    // Render the object with GLKit
-    [self.effect prepareToDraw];
-    
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    
-    // Render the object again with ES2
     glUseProgram(_program);
+    screenWidth = self.view.bounds.size.width;
+    screenHeight = self.view.bounds.size.height;
     
-    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
-    glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
-    
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    [_game draw];
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation
@@ -268,8 +222,7 @@ GLfloat gCubeVertexData[216] =
     
     // Bind attribute locations.
     // This needs to be done prior to linking.
-    glBindAttribLocation(_program, GLKVertexAttribPosition, "position");
-    glBindAttribLocation(_program, GLKVertexAttribNormal, "normal");
+    glBindAttribLocation(_program, ATTRIB_VERTEX, "position");
     
     // Link program.
     if (![self linkProgram:_program]) {
@@ -292,8 +245,9 @@ GLfloat gCubeVertexData[216] =
     }
     
     // Get uniform locations.
-    uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
-    uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");
+    uniforms[UNIFORM_POSITION_MATRIX] = glGetUniformLocation(_program, "positionMatrix");
+    uniforms[UNIFORM_TEXTURE_MATRIX] = glGetUniformLocation(_program, "textureMatrix");
+    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(_program, "texture");
     
     // Release vertex and fragment shaders.
     if (vertShader) {

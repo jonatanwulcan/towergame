@@ -1,28 +1,19 @@
 //
 //  Shader.vsh
-//  towergame
+//  wordgame
 //
-//  Created by Jonatan Wulcan on 2012-12-30.
-//  Copyright (c) 2012 Jonatan Wulcan. All rights reserved.
+//  Created by Jonatan Wulcan on 2012-12-09.
+//  Copyright (c) 2012 Wulcan Consulting. All rights reserved.
 //
 
 attribute vec4 position;
-attribute vec3 normal;
-
-varying lowp vec4 colorVarying;
-
-uniform mat4 modelViewProjectionMatrix;
-uniform mat3 normalMatrix;
+varying vec2 texCoords;
+uniform mat4 positionMatrix;
+uniform mat4 textureMatrix;
 
 void main()
 {
-    vec3 eyeNormal = normalize(normalMatrix * normal);
-    vec3 lightPosition = vec3(0.0, 0.0, 1.0);
-    vec4 diffuseColor = vec4(0.4, 0.4, 1.0, 1.0);
-    
-    float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
-                 
-    colorVarying = diffuseColor * nDotVP;
-    
-    gl_Position = modelViewProjectionMatrix * position;
+    vec4 tt = textureMatrix * position;
+    texCoords = vec2(tt[0], tt[1]);
+    gl_Position = positionMatrix * position;
 }
