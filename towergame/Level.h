@@ -11,6 +11,6 @@
 }
 
 - (id) initWithLevelNumber:(int) levelNumber;
-- (bool) hasFloorWithX:(float) fx y:(float) fy;
+- (NSArray*) getNearbyTilesWithX:(float) centerX y:(float) centerY;
 - (void) draw;
 @end

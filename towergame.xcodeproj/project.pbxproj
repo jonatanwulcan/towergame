@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		930E6D361694AB7D00629EC9 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = 930E6D351694AB7D00629EC9 /* Tile.m */; };
+		930E6D3F1696063600629EC9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D381696063500629EC9 /* Icon.png */; };
+		930E6D401696063600629EC9 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D391696063500629EC9 /* Icon-72.png */; };
+		930E6D411696063600629EC9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D3A1696063500629EC9 /* Icon@2x.png */; };
+		930E6D431696063600629EC9 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D3C1696063600629EC9 /* iTunesArtwork.png */; };
+		930E6D471696085200629EC9 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D461696085200629EC9 /* Icon-72@2x.png */; };
+		930E6D4B1699CFE300629EC9 /* jumptower_actors.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D481699CFE300629EC9 /* jumptower_actors.png */; };
+		930E6D4C1699CFE300629EC9 /* jumptower_level1.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D491699CFE300629EC9 /* jumptower_level1.png */; };
+		930E6D4D1699CFE300629EC9 /* jumptower_level2.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D4A1699CFE300629EC9 /* jumptower_level2.png */; };
 		93C69E1116907B64004F42FD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C69E1016907B64004F42FD /* UIKit.framework */; };
 		93C69E1316907B64004F42FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C69E1216907B64004F42FD /* Foundation.framework */; };
 		93C69E1516907B64004F42FD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C69E1416907B64004F42FD /* CoreGraphics.framework */; };
@@ -26,11 +35,19 @@
 		93C9A02516907C82006A7068 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C9A02016907C82006A7068 /* Game.m */; };
 		93C9A02616907C82006A7068 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C9A02216907C82006A7068 /* Level.m */; };
 		93C9A02716907C82006A7068 /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C9A02416907C82006A7068 /* Sprite.m */; };
-		93C9A02B16907CB8006A7068 /* monster.png in Resources */ = {isa = PBXBuildFile; fileRef = 93C9A02916907CB8006A7068 /* monster.png */; };
-		93C9A02C16907CB8006A7068 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 93C9A02A16907CB8006A7068 /* test.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		930E6D341694AB7D00629EC9 /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
+		930E6D351694AB7D00629EC9 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tile.m; sourceTree = "<group>"; };
+		930E6D381696063500629EC9 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		930E6D391696063500629EC9 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		930E6D3A1696063500629EC9 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		930E6D3C1696063600629EC9 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		930E6D461696085200629EC9 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		930E6D481699CFE300629EC9 /* jumptower_actors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumptower_actors.png; sourceTree = "<group>"; };
+		930E6D491699CFE300629EC9 /* jumptower_level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumptower_level1.png; sourceTree = "<group>"; };
+		930E6D4A1699CFE300629EC9 /* jumptower_level2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumptower_level2.png; sourceTree = "<group>"; };
 		93C69E0C16907B64004F42FD /* towergame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = towergame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C69E1016907B64004F42FD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		93C69E1216907B64004F42FD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -59,8 +76,6 @@
 		93C9A02216907C82006A7068 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		93C9A02316907C82006A7068 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 		93C9A02416907C82006A7068 /* Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sprite.m; sourceTree = "<group>"; };
-		93C9A02916907CB8006A7068 /* monster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = monster.png; path = ../../jumpgame/jumpgame/monster.png; sourceTree = "<group>"; };
-		93C9A02A16907CB8006A7068 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test.png; path = ../../jumpgame/jumpgame/test.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +94,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		93986A3C169081310060DF24 /* textures */ = {
+			isa = PBXGroup;
+			children = (
+				930E6D481699CFE300629EC9 /* jumptower_actors.png */,
+				930E6D491699CFE300629EC9 /* jumptower_level1.png */,
+				930E6D4A1699CFE300629EC9 /* jumptower_level2.png */,
+			);
+			name = textures;
+			sourceTree = "<group>";
+		};
 		93C69E0116907B64004F42FD = {
 			isa = PBXGroup;
 			children = (
@@ -111,11 +136,17 @@
 		93C69E1A16907B64004F42FD /* towergame */ = {
 			isa = PBXGroup;
 			children = (
+				930E6D461696085200629EC9 /* Icon-72@2x.png */,
+				930E6D381696063500629EC9 /* Icon.png */,
+				930E6D391696063500629EC9 /* Icon-72.png */,
+				930E6D3A1696063500629EC9 /* Icon@2x.png */,
+				930E6D3C1696063600629EC9 /* iTunesArtwork.png */,
+				93986A3C169081310060DF24 /* textures */,
 				93C9A01E16907C82006A7068 /* common.h */,
-				93C9A02916907CB8006A7068 /* monster.png */,
-				93C9A02A16907CB8006A7068 /* test.png */,
 				93C9A01F16907C82006A7068 /* Game.h */,
 				93C9A02016907C82006A7068 /* Game.m */,
+				930E6D341694AB7D00629EC9 /* Tile.h */,
+				930E6D351694AB7D00629EC9 /* Tile.m */,
 				93C9A02116907C82006A7068 /* Level.h */,
 				93C9A02216907C82006A7068 /* Level.m */,
 				93C9A02316907C82006A7068 /* Sprite.h */,
@@ -206,8 +237,14 @@
 				93C69E2F16907B65004F42FD /* Shader.vsh in Resources */,
 				93C69E3516907B65004F42FD /* ViewController_iPhone.xib in Resources */,
 				93C69E3816907B65004F42FD /* ViewController_iPad.xib in Resources */,
-				93C9A02B16907CB8006A7068 /* monster.png in Resources */,
-				93C9A02C16907CB8006A7068 /* test.png in Resources */,
+				930E6D3F1696063600629EC9 /* Icon.png in Resources */,
+				930E6D401696063600629EC9 /* Icon-72.png in Resources */,
+				930E6D411696063600629EC9 /* Icon@2x.png in Resources */,
+				930E6D431696063600629EC9 /* iTunesArtwork.png in Resources */,
+				930E6D471696085200629EC9 /* Icon-72@2x.png in Resources */,
+				930E6D4B1699CFE300629EC9 /* jumptower_actors.png in Resources */,
+				930E6D4C1699CFE300629EC9 /* jumptower_level1.png in Resources */,
+				930E6D4D1699CFE300629EC9 /* jumptower_level2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +261,7 @@
 				93C9A02516907C82006A7068 /* Game.m in Sources */,
 				93C9A02616907C82006A7068 /* Level.m in Sources */,
 				93C9A02716907C82006A7068 /* Sprite.m in Sources */,
+				930E6D361694AB7D00629EC9 /* Tile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,9 +350,14 @@
 		93C69E3C16907B65004F42FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "towergame/towergame-Prefix.pch";
 				INFOPLIST_FILE = "towergame/towergame-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -323,9 +366,14 @@
 		93C69E3D16907B65004F42FD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "towergame/towergame-Prefix.pch";
 				INFOPLIST_FILE = "towergame/towergame-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

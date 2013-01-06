@@ -124,21 +124,58 @@ GLfloat vertexData[] =
     glVertexAttribPointer(ATTRIB_VERTEX, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
         
     _texture0 = [GLKTextureLoader
-                 textureWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"png"]
+                 textureWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"jumptower_actors" ofType:@"png"]
                  options:nil
                  error: NULL];
+    
     _texture1 = [GLKTextureLoader
-                 textureWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"monster" ofType:@"png"]
+                 textureWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"jumptower_level1" ofType:@"png"]
                  options:nil
-                 error:NULL];
+                 error: NULL];
+
     
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(_texture0.target, _texture0.name);
+    glTexParameteri(_texture0.target, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(_texture0.target, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(_texture1.target, _texture1.name);
+    glTexParameteri(_texture1.target, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(_texture1.target, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     
     // Setup sprites
-    sprites[SPRITE_FLOOR] = [[Sprite alloc] initWithTextureX:70 textureY:-50 width:32 height:32 texture:1];
+    sprites[SPRITE_FLOOR] = [[Sprite alloc] initWithTextureX:-240.0 textureY:240.0 width:32 height:32 texture:1 flipX:false];
+    sprites[SPRITE_FLOOR_LEFT] = [[Sprite alloc] initWithTextureX:-240.0+32*2 textureY:240 width:32 height:32 texture:1 flipX:false];
+    sprites[SPRITE_FLOOR_RIGHT] = [[Sprite alloc] initWithTextureX:-240.0+32*2 textureY:240 width:32 height:32 texture:1 flipX:true];
+
+    sprites[SPRITE_FLOOR_DEAD] = [[Sprite alloc] initWithTextureX:-240.0 textureY:240.0-32 width:32 height:32 texture:1 flipX:false];
+    sprites[SPRITE_FLOOR_LEFT_DEAD] = [[Sprite alloc] initWithTextureX:-240.0+32*2 textureY:240-32 width:32 height:32 texture:1 flipX:false];
+    sprites[SPRITE_FLOOR_RIGHT_DEAD] = [[Sprite alloc] initWithTextureX:-240.0+32*2 textureY:240-32 width:32 height:32 texture:1 flipX:true];
+
+    
+    sprites[SPRITE_BACKGROUND] = [[Sprite alloc] initWithTextureX:128.0 textureY:128.0 width:256 height:256 texture:1 flipX:false];
+    sprites[SPRITE_WALL_LEFT] = [[Sprite alloc] initWithTextureX:-240.0+32 textureY:240.0 width:32 height:32 texture:1 flipX:false];
+    sprites[SPRITE_WALL_RIGHT] = [[Sprite alloc] initWithTextureX:-240.0+32 textureY:240.0 width:32 height:32 texture:1 flipX:true];
+
+    sprites[SPRITE_PLAYER_WALK_0] = [[Sprite alloc] initWithTextureX:-216.0+80*0 textureY:216.0 width:78 height:78 texture:0 flipX:false];
+    sprites[SPRITE_PLAYER_WALK_1] = [[Sprite alloc] initWithTextureX:-216.0+80*1 textureY:216.0 width:78 height:78 texture:0 flipX:false];
+    sprites[SPRITE_PLAYER_WALK_2] = [[Sprite alloc] initWithTextureX:-216.0+80*0 textureY:216.0 width:78 height:78 texture:0 flipX:false];
+    sprites[SPRITE_PLAYER_WALK_3] = [[Sprite alloc] initWithTextureX:-216.0+80*2 textureY:216.0 width:78 height:78 texture:0 flipX:false];
+    sprites[SPRITE_PLAYER_WALK_4] = [[Sprite alloc] initWithTextureX:-216.0+80*3 textureY:216.0 width:78 height:78 texture:0 flipX:false];
+    sprites[SPRITE_PLAYER_WALK_5] = [[Sprite alloc] initWithTextureX:-216.0+80*4 textureY:216.0 width:78 height:78 texture:0 flipX:false];
+    sprites[SPRITE_PLAYER_WALK_6] = [[Sprite alloc] initWithTextureX:-216.0+80*3 textureY:216.0 width:78 height:78 texture:0 flipX:false];
+    sprites[SPRITE_PLAYER_WALK_7] = [[Sprite alloc] initWithTextureX:-216.0+80*2 textureY:216.0 width:78 height:78 texture:0 flipX:false];
+    
+    sprites[SPRITE_PLAYER_JUMP] = [[Sprite alloc] initWithTextureX:-216.0+80*5 textureY:216.0 width:78 height:78 texture:0 flipX:false];
+    sprites[SPRITE_PLAYER_FALL] = [[Sprite alloc] initWithTextureX:-216.0+80*0 textureY:216.0-80 width:78 height:78 texture:0 flipX:false];
+    
+    sprites[SPRITE_PLAYER_PRIOUETTE_0] = [[Sprite alloc] initWithTextureX:-216.0+80*5 textureY:216.0-80*0 width:78 height:78 texture:0 flipX:true];
+    sprites[SPRITE_PLAYER_PRIOUETTE_1] = [[Sprite alloc] initWithTextureX:-216.0+80*1 textureY:216.0-80*1 width:78 height:78 texture:0 flipX:true];
+    sprites[SPRITE_PLAYER_PRIOUETTE_2] = [[Sprite alloc] initWithTextureX:-216.0+80*5 textureY:216.0-80*0 width:78 height:78 texture:0 flipX:false];
+    sprites[SPRITE_PLAYER_PRIOUETTE_3] = [[Sprite alloc] initWithTextureX:-216.0+80*2 textureY:216.0-80*1 width:78 height:78 texture:0 flipX:true];
+
+
 }
 
 - (void)tearDownGL
@@ -146,8 +183,6 @@ GLfloat vertexData[] =
     [EAGLContext setCurrentContext:self.context];
     
     GLuint name = _texture0.name;
-    glDeleteTextures(1, &name);
-    name = _texture1.name;
     glDeleteTextures(1, &name);
     
     glDeleteBuffers(1, &_vertexBuffer);
@@ -340,6 +375,10 @@ GLfloat vertexData[] =
     }
     
     return YES;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [_game jump];
 }
 
 @end
