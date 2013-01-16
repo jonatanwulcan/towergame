@@ -32,6 +32,10 @@
 }
 
 -(void) drawWithX:(float) x y:(float) y z:(float) z flip:(bool) flip {
+    [self drawWithX:x y:y z:z flip:flip texture:texture];
+}
+
+-(void) drawWithX:(float) x y:(float) y z:(float) z flip:(bool) flip texture:(int) myTexture {
     float screenMin = MIN(screenWidth, screenHeight);
     
     GLKMatrix4 positionMatrix = GLKMatrix4MakeScale(screenMin/screenWidth/320.0, screenMin/screenHeight/320.0, 0);
@@ -47,7 +51,7 @@
     
     glUniformMatrix4fv(uniforms[UNIFORM_TEXTURE_MATRIX], 1, 0, textureMatrix.m);
     
-    glUniform1i(uniforms[UNIFORM_TEXTURE], texture);
+    glUniform1i(uniforms[UNIFORM_TEXTURE], myTexture);
     
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }

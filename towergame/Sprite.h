@@ -16,4 +16,5 @@
 -(void) drawWithX:(float) x y:(float) y;
 -(void) drawWithX:(float) x y:(float) y flip:(bool) flip;
 -(void) drawWithX:(float) x y:(float) y z:(float) z flip:(bool) flip;
+-(void) drawWithX:(float) x y:(float) y z:(float) z flip:(bool) flip texture:(int) texture;
 @end

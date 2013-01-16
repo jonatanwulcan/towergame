@@ -11,7 +11,6 @@
 @interface Game : NSObject {
     Level* level;
     int frameNum;
-    int playerState;
     float playerX;
     float playerY;
     float playerVX;
@@ -20,6 +19,7 @@
     float cameraVY;
     int jumpCount;
     bool isDead;
+    float currentBaseFloor;
 }
 
 -(id) init;

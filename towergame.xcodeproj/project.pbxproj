@@ -13,9 +13,9 @@
 		930E6D411696063600629EC9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D3A1696063500629EC9 /* Icon@2x.png */; };
 		930E6D431696063600629EC9 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D3C1696063600629EC9 /* iTunesArtwork.png */; };
 		930E6D471696085200629EC9 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D461696085200629EC9 /* Icon-72@2x.png */; };
-		930E6D4B1699CFE300629EC9 /* jumptower_actors.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D481699CFE300629EC9 /* jumptower_actors.png */; };
-		930E6D4C1699CFE300629EC9 /* jumptower_level1.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D491699CFE300629EC9 /* jumptower_level1.png */; };
-		930E6D4D1699CFE300629EC9 /* jumptower_level2.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D4A1699CFE300629EC9 /* jumptower_level2.png */; };
+		930E6D4D1699CFE300629EC9 /* jumptower_level1.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D4A1699CFE300629EC9 /* jumptower_level1.png */; };
+		930E6D5016A72D5700629EC9 /* jumptower_actors.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D4E16A72D5700629EC9 /* jumptower_actors.png */; };
+		930E6D5116A72D5700629EC9 /* jumptower_level0.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D4F16A72D5700629EC9 /* jumptower_level0.png */; };
 		93C69E1116907B64004F42FD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C69E1016907B64004F42FD /* UIKit.framework */; };
 		93C69E1316907B64004F42FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C69E1216907B64004F42FD /* Foundation.framework */; };
 		93C69E1516907B64004F42FD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C69E1416907B64004F42FD /* CoreGraphics.framework */; };
@@ -45,9 +45,9 @@
 		930E6D3A1696063500629EC9 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		930E6D3C1696063600629EC9 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		930E6D461696085200629EC9 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
-		930E6D481699CFE300629EC9 /* jumptower_actors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumptower_actors.png; sourceTree = "<group>"; };
-		930E6D491699CFE300629EC9 /* jumptower_level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumptower_level1.png; sourceTree = "<group>"; };
-		930E6D4A1699CFE300629EC9 /* jumptower_level2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumptower_level2.png; sourceTree = "<group>"; };
+		930E6D4A1699CFE300629EC9 /* jumptower_level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumptower_level1.png; sourceTree = "<group>"; };
+		930E6D4E16A72D5700629EC9 /* jumptower_actors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumptower_actors.png; sourceTree = "<group>"; };
+		930E6D4F16A72D5700629EC9 /* jumptower_level0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumptower_level0.png; sourceTree = "<group>"; };
 		93C69E0C16907B64004F42FD /* towergame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = towergame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C69E1016907B64004F42FD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		93C69E1216907B64004F42FD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,9 +97,9 @@
 		93986A3C169081310060DF24 /* textures */ = {
 			isa = PBXGroup;
 			children = (
-				930E6D481699CFE300629EC9 /* jumptower_actors.png */,
-				930E6D491699CFE300629EC9 /* jumptower_level1.png */,
-				930E6D4A1699CFE300629EC9 /* jumptower_level2.png */,
+				930E6D4E16A72D5700629EC9 /* jumptower_actors.png */,
+				930E6D4F16A72D5700629EC9 /* jumptower_level0.png */,
+				930E6D4A1699CFE300629EC9 /* jumptower_level1.png */,
 			);
 			name = textures;
 			sourceTree = "<group>";
@@ -242,9 +242,9 @@
 				930E6D411696063600629EC9 /* Icon@2x.png in Resources */,
 				930E6D431696063600629EC9 /* iTunesArtwork.png in Resources */,
 				930E6D471696085200629EC9 /* Icon-72@2x.png in Resources */,
-				930E6D4B1699CFE300629EC9 /* jumptower_actors.png in Resources */,
-				930E6D4C1699CFE300629EC9 /* jumptower_level1.png in Resources */,
-				930E6D4D1699CFE300629EC9 /* jumptower_level2.png in Resources */,
+				930E6D4D1699CFE300629EC9 /* jumptower_level1.png in Resources */,
+				930E6D5016A72D5700629EC9 /* jumptower_actors.png in Resources */,
+				930E6D5116A72D5700629EC9 /* jumptower_level0.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

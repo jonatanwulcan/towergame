@@ -12,11 +12,10 @@
     float x;
     float y;
     int type;
-    int sprite;
 }
 
-- (id) initWithX:(float) _x y:(float) _y type:(int) _type sprite:(int) _sprite;
-- (void) draw;
+- (id) initWithX:(float) _x y:(float) _y type:(int) _type;
+- (void) drawWithFadeLimit:(float) fadeLimit;
 - (bool) overlapsWithX:(float) ox y:(float) oy width:(float) owidth height:(float) oheight;
 - (int) type;
 - (float) getY;

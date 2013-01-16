@@ -12,5 +12,5 @@
 
 - (id) initWithLevelNumber:(int) levelNumber;
 - (NSArray*) getNearbyTilesWithX:(float) centerX y:(float) centerY;
-- (void) draw;
+- (void) drawWithFadeLimit:(float) fadeLimit;
 @end

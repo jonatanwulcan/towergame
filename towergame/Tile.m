@@ -13,17 +13,46 @@
 
 @implementation Tile
 
-- (id) initWithX:(float) _x y:(float) _y type:(int) _type sprite:(int)_sprite {
+- (id) initWithX:(float) _x y:(float) _y type:(int) _type {
     self = [super init];
     x = _x;
     y = _y;
     type = _type;
-    sprite = _sprite;
     return self;
 }
 
-- (void) draw {
-    [sprites[sprite] drawWithX:x y:y];
+- (void) drawWithFadeLimit:(float) fadeLimit {
+    int floorFade = 0;
+    if(fadeLimit - 1 > y) {
+        floorFade = 1;
+    }
+    if(fadeLimit - 15 > y) {
+        floorFade = 2;
+    }
+    if(fadeLimit - 30 > y) {
+        floorFade = 3;
+    }
+
+    switch(type) {
+        case TILE_BASEFLOOR:
+            [sprites[SPRITE_FLOOR_0] drawWithX:x y:y];
+            break;
+        case TILE_FLOOR:
+            [sprites[SPRITE_FLOOR_0+floorFade] drawWithX:x y:y];
+            break;
+        case TILE_FLOOR_LEFT:
+            [sprites[SPRITE_FLOOR_LEFT_0+floorFade] drawWithX:x y:y];
+            break;
+        case TILE_FLOOR_RIGHT:
+            [sprites[SPRITE_FLOOR_RIGHT_0+floorFade] drawWithX:x y:y];
+            break;
+        case TILE_WALL_LEFT:
+            [sprites[SPRITE_WALL_LEFT] drawWithX:x y:y];
+            break;
+        case TILE_WALL_RIGHT:
+            [sprites[SPRITE_WALL_RIGHT] drawWithX:x y:y];
+            break;
+    }
 }
 
 - (bool) overlapsWithX:(float) ox y:(float) oy width:(float) owidth height:(float) oheight {
