@@ -10,7 +10,6 @@
 
 #import "Level.h"
 #import "Sprite.h"
-#import "Tile.h"
 
 int levelData[] = {
     2,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,3,
@@ -129,7 +128,7 @@ int levelData2Tile[] = {
     return self;
 }
 
-- (int) tileTypeWithX:(float) fx y:(float) fy {
+- (int) tileTypeWithX:(int) fx y:(int) fy {
     int x=floor(fx/32.0);
     int y=floor(fy/32.0);
     
@@ -138,35 +137,51 @@ int levelData2Tile[] = {
     if(ldx < 0 || ldx >= 20 || ldy < 0 || ldy >= 80) {
         return 0;
     }
-    return levelData[ldy*20+ldx];
+    return levelData2Tile[levelData[ldy*20+ldx]];
 }
 
 - (void) drawWithFadeLimit:(float) fadeLimit {
-    for(Tile* tile in [self getNearbyTilesWithX:cameraX y:cameraY]) {
-        [tile drawWithFadeLimit:fadeLimit];
-    }
-}
-
-- (NSArray*) getNearbyTilesWithX:(float) centerX y:(float) centerY {
-    float cx = (((int)centerX)/32)*32-16;
-    float cy = (((int)centerY)/32)*32-16;
-    float w = 32*10;
-    float h = 32*20;
-    float minX = cx-w;
-    float minY = cy-h;
-    float maxX = cx+w;
-    float maxY = cy+h;
+    int cx = [self round:cameraX];
+    int cy = [self round:cameraY];
     
-    NSMutableArray* result = [NSMutableArray array];
-    for(int x=minX;x<=maxX;x+=32) {
-        for(int y=minY;y<=maxY;y+=32) {
-            int type = [self tileTypeWithX:x y:y];
-            if(type != 0) {
-                Tile* tile = [[Tile alloc] initWithX:x y:y type:levelData2Tile[type]];
-                [result addObject:tile];
+    for(int y=cy-640;y<=cy+640;y+=32) {
+        for(int x=cx-320;x<=cx+320;x+=32) {
+            int floorFade = 0;
+            if(fadeLimit - 1 > y) {
+                floorFade = 1;
+            }
+            if(fadeLimit - 15 > y) {
+                floorFade = 2;
+            }
+            if(fadeLimit - 30 > y) {
+                floorFade = 3;
+            }
+            
+            switch([self tileTypeWithX:x y:y]) {
+                case TILE_BASEFLOOR:
+                    [sprites[SPRITE_FLOOR_0] drawWithX:x y:y z:1 flip:false];
+                    break;
+                case TILE_FLOOR:
+                    [sprites[SPRITE_FLOOR_0+floorFade] drawWithX:x y:y z:1 flip:false];
+                    break;
+                case TILE_FLOOR_LEFT:
+                    [sprites[SPRITE_FLOOR_LEFT_0+floorFade] drawWithX:x y:y z:1 flip:false];
+                    break;
+                case TILE_FLOOR_RIGHT:
+                    [sprites[SPRITE_FLOOR_RIGHT_0+floorFade] drawWithX:x y:y z:1 flip:false];
+                    break;
+                case TILE_WALL_LEFT:
+                    [sprites[SPRITE_WALL_LEFT] drawWithX:x y:y z:1 flip:false];
+                    break;
+                case TILE_WALL_RIGHT:
+                    [sprites[SPRITE_WALL_RIGHT] drawWithX:x y:y z:1 flip:false];
+                    break;
             }
         }
     }
-    return result;
+}
+
+- (int) round:(float) f {
+    return (((int)f)/32)*32-16;
 }
 @end

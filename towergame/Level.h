@@ -11,6 +11,7 @@
 }
 
 - (id) initWithLevelNumber:(int) levelNumber;
-- (NSArray*) getNearbyTilesWithX:(float) centerX y:(float) centerY;
 - (void) drawWithFadeLimit:(float) fadeLimit;
+- (int) round:(float) f;
+- (int) tileTypeWithX:(int) fx y:(int) fy;
 @end

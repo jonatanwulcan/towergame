@@ -10,7 +10,6 @@
 
 #import "Game.h"
 #import "Sprite.h"
-#import "Tile.h"
 
 @implementation Game
 
@@ -48,39 +47,46 @@
     playerVY += GRAVITY;
     if(playerVY < MAX_SPEED_FALL) playerVY = MAX_SPEED_FALL;
     
-    NSArray* tiles = [level getNearbyTilesWithX:playerX y:playerY];
     
     // Check collisions
     float newPlayerX = playerX + playerVX;
     float newPlayerY = playerY + playerVY;
-    for(Tile* tile in tiles) {
-        if(![tile overlapsWithX:newPlayerX y:newPlayerY width:32 height:64]) continue;
-        switch([tile type]) {
-            case TILE_BASEFLOOR:
-                if(playerVY < 0 && ![tile overlapsWithX:newPlayerX y:playerY width:32 height:64]) {
-                    playerY = [tile getY] + 16 + 32;
-                    if([tile getY]+CAMERA_ADD > cameraTargetY) cameraTargetY = [tile getY]+CAMERA_ADD;
-                    playerVY = 0;
-                    jumpCount = 0;
-                }
-                break;
+    int cx = [level round:newPlayerX];
+    int cy = [level round:newPlayerY];
+    
+    for(int y=cy-64;y<=cy+64;y+=32) {
+        for(int x=cx-64;x<=cx+64;x+=32) {
+            bool isColliding = fabs(newPlayerX-x) < 16+32/2 && fabs(newPlayerY-y) < 16+64/2;
+            if(!isColliding) continue;
+            bool isCollidingNoYMovement = fabs(newPlayerX-x) < 16+32/2 && fabs(playerY-y) < 16+64/2;
+            
+            switch([level tileTypeWithX:x y:y]) {
+                case TILE_BASEFLOOR:
+                    if(playerVY < 0 && !isCollidingNoYMovement) {
+                        playerY = y + 16 + 32;
+                        if(y+CAMERA_ADD > cameraTargetY) cameraTargetY = y+CAMERA_ADD;
+                        playerVY = 0;
+                        jumpCount = 0;
+                    }
+                    break;
 
-            case TILE_FLOOR:
-            case TILE_FLOOR_LEFT:
-            case TILE_FLOOR_RIGHT:
-                if(playerVY < 0 && ![tile overlapsWithX:newPlayerX y:playerY width:32 height:64] && !isDead && [tile getY] > cameraTargetY - DEATH_LIMIT ) {
-                    playerY = [tile getY] + 16 + 32;
-                    if([tile getY]+CAMERA_ADD > cameraTargetY) cameraTargetY = [tile getY]+CAMERA_ADD;
-                    playerVY = 0;
-                    jumpCount = 0;
-                }
-                break;
-            case TILE_WALL_LEFT:
-                playerVX = WALK_SPEED;
-                break;
-            case TILE_WALL_RIGHT:
-                playerVX = -WALK_SPEED;
-                break;
+                case TILE_FLOOR:
+                case TILE_FLOOR_LEFT:
+                case TILE_FLOOR_RIGHT:
+                    if(playerVY < 0 && !isCollidingNoYMovement && !isDead && y > cameraTargetY - DEATH_LIMIT ) {
+                        playerY = y + 16 + 32;
+                        if(y+CAMERA_ADD > cameraTargetY) cameraTargetY = y+CAMERA_ADD;
+                        playerVY = 0;
+                        jumpCount = 0;
+                    }
+                    break;
+                case TILE_WALL_LEFT:
+                    playerVX = WALK_SPEED;
+                    break;
+                case TILE_WALL_RIGHT:
+                    playerVX = -WALK_SPEED;
+                    break;
+            }
         }
     }
     
@@ -122,10 +128,14 @@
 
 -(void) draw {
     float bgz = 2;
-    float bgx = floor(cameraX/bgz/256.0)*256.0;
-    float bgy = floor(cameraY/bgz/256.0)*256.0;
-    for(int i=-3;i<=3;i++) for(int j=-3;j<=3;j++) {
-        [sprites[SPRITE_BACKGROUND] drawWithX:bgx+i*256 y:bgy+j*256 z:bgz flip:false];
+    float bgx = floor(cameraX/bgz/512.0)*512.0;
+    float bgy = floor(cameraY/bgz/512.0)*512.0;
+    for(int j=-4;j<=4;j++) for(int i=-4;i<=4;i++) {
+        if(bgy+j*512 > 256) {
+            [sprites[SPRITE_BACKGROUND] drawWithX:bgx+i*512 y:bgy+j*512 z:bgz flip:false];
+        } else {
+            [sprites[SPRITE_BACKGROUND] drawWithX:bgx+i*512 y:bgy+j*512 z:bgz flip:false];
+        }
     }
     
     float fadeLimit = cameraY-DEATH_LIMIT;
@@ -137,16 +147,16 @@
 
 -(void) drawPlayer {
     if(isDead) {
-        [sprites[SPRITE_PLAYER_DEAD_0+(frameNum/10)%2] drawWithX:playerX y:playerY flip:playerVX<0];
+        [sprites[SPRITE_PLAYER_DEAD_0+(frameNum/10)%2] drawWithX:playerX y:playerY z:1 flip:playerVX<0];
     } else if(jumpCount == 2) {
-        [sprites[SPRITE_PLAYER_PRIOUETTE_0+(frameNum/5)%4] drawWithX:playerX y:playerY flip:playerVX<0];
+        [sprites[SPRITE_PLAYER_PRIOUETTE_0+(frameNum/5)%4] drawWithX:playerX y:playerY z:1 flip:playerVX<0];
     } else {
         if(fabs(playerVY) < 2) {
-            [sprites[SPRITE_PLAYER_WALK_0+(frameNum/5)%8] drawWithX:playerX y:playerY flip:playerVX<0];
+            [sprites[SPRITE_PLAYER_WALK_0+(frameNum/5)%8] drawWithX:playerX y:playerY z:1 flip:playerVX<0];
         } else if(playerVY > 0) {
-            [sprites[SPRITE_PLAYER_JUMP] drawWithX:playerX y:playerY flip:playerVX<0];
+            [sprites[SPRITE_PLAYER_JUMP] drawWithX:playerX y:playerY z:1 flip:playerVX<0];
         } else if(playerVY < 0) {
-            [sprites[SPRITE_PLAYER_FALL] drawWithX:playerX y:playerY flip:playerVX<0];
+            [sprites[SPRITE_PLAYER_FALL] drawWithX:playerX y:playerY z:1 flip:playerVX<0];
         }
     }
 }

@@ -12,46 +12,45 @@
 
 @implementation Sprite
 
--(id) initWithTextureX:(float) _textureX textureY:(float) _textureY width:(float) _width height:(float) _height texture:(int) _texture flipX:(bool) _flipX {
+-(id) initWithTextureX:(float) _textureX textureY:(float) _textureY width:(float) _width height:(float) _height flipX:(bool) _flipX {
     self = [super init];
     textureX = _textureX;
     textureY = _textureY;
     width = _width;
     height = _height;
-    texture = _texture;
     textureScaleX = _flipX?-1.0:1.0;
     return self;
 }
 
--(void) drawWithX:(float) x y:(float) y {
-    [self drawWithX:x y:y z:1 flip:false];
-}
-
--(void) drawWithX:(float) x y:(float) y flip:(bool) flip {
-    [self drawWithX:x y:y z:1 flip:flip];
-}
-
 -(void) drawWithX:(float) x y:(float) y z:(float) z flip:(bool) flip {
-    [self drawWithX:x y:y z:z flip:flip texture:texture];
-}
-
--(void) drawWithX:(float) x y:(float) y z:(float) z flip:(bool) flip texture:(int) myTexture {
     float screenMin = MIN(screenWidth, screenHeight);
+    float sx = screenMin/screenWidth/320.0;
+    float sy = screenMin/screenHeight/320.0;
     
-    GLKMatrix4 positionMatrix = GLKMatrix4MakeScale(screenMin/screenWidth/320.0, screenMin/screenHeight/320.0, 0);
-    positionMatrix = GLKMatrix4Multiply(positionMatrix, GLKMatrix4MakeTranslation(x-cameraX/z, y-cameraY/z, 0));
-    positionMatrix = GLKMatrix4Multiply(positionMatrix, GLKMatrix4MakeScale(width, height, 1));
-    glUniformMatrix4fv(uniforms[UNIFORM_POSITION_MATRIX], 1, 0, positionMatrix.m);
+    float positionMatrix[] = {
+        sx*width*2, 0, 0, 0,
+        0, sy*height*2, 0, 0,
+        0, 0, 1, 0,
+        sx*(x-cameraX)/z, sy*(y-cameraY)/z, 0, 1,
+    };
+    glUniformMatrix4fv(uniforms[UNIFORM_POSITION_MATRIX], 1, 0, positionMatrix);
     
-    GLKMatrix4 textureMatrix = GLKMatrix4MakeTranslation(0.5, 0.5, 0);
-    textureMatrix = GLKMatrix4Multiply(textureMatrix, GLKMatrix4MakeScale(1.0/512.0, -1.0/512.0, 0));
+    float tsx = (flip?-1:1)*textureScaleX*width;
+    float tsy = height;
+    float textureMatrix[] = {
+        tsx/512.0, 0, 0, 0,
+        0, -tsy/512.0, 0, 0,
+        0, 0, 1, 0,
+        0.5+textureX/512.0, 0.5-textureY/512.0, 0, 1,
+    };
     
-    textureMatrix = GLKMatrix4Multiply(textureMatrix, GLKMatrix4MakeTranslation(textureX, textureY, 0));
-    textureMatrix = GLKMatrix4Multiply(textureMatrix, GLKMatrix4MakeScale((flip?-1:1)*textureScaleX*width, height, 0));
+    glUniformMatrix4fv(uniforms[UNIFORM_TEXTURE_MATRIX], 1, 0, textureMatrix);
     
-    glUniformMatrix4fv(uniforms[UNIFORM_TEXTURE_MATRIX], 1, 0, textureMatrix.m);
-    
-    glUniform1i(uniforms[UNIFORM_TEXTURE], myTexture);
+    int texture = 0;
+    if(y > 256+1024) {
+        texture = 1;
+    }
+    glUniform1i(uniforms[UNIFORM_TEXTURE], texture);
     
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }
