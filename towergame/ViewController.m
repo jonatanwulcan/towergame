@@ -20,6 +20,7 @@ float screenWidth;
 float screenHeight;
 float cameraX = 0;
 float cameraY = 0;
+int lastTexture = -1;
 
 
 Sprite* sprites[NUM_SPRITES];
@@ -229,12 +230,15 @@ GLfloat vertexData[] =
     }
     
     // Draw
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
     glBindVertexArrayOES(_vertexArray);
     glUseProgram(_program);
     screenWidth = self.view.bounds.size.width;
     screenHeight = self.view.bounds.size.height;
+    
+    /*for(int i=0;i<100;i++) {
+        [sprites[SPRITE_FLOOR_0] drawWithX:0 y:0 z:1 flip:false];
+    }*/
+    
     
     [_game draw];
 }

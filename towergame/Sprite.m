@@ -23,6 +23,10 @@
 }
 
 -(void) drawWithX:(float) x y:(float) y z:(float) z flip:(bool) flip {
+    if(fabs(x-cameraX) > 640+width*2 || fabs(y-cameraY) > 960+height*2) {
+        return;
+    }
+    
     float screenMin = MIN(screenWidth, screenHeight);
     float sx = screenMin/screenWidth/320.0;
     float sy = screenMin/screenHeight/320.0;
@@ -48,9 +52,13 @@
     
     int texture = 0;
     if(y > 256+1024) {
-        texture = 1;
+        texture = 0;
     }
-    glUniform1i(uniforms[UNIFORM_TEXTURE], texture);
+    
+    if(lastTexture != texture) {
+        glUniform1i(uniforms[UNIFORM_TEXTURE], texture);
+        lastTexture = texture;
+    }
     
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }

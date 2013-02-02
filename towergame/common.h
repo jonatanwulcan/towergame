@@ -95,6 +95,7 @@ extern float screenWidth;
 extern float screenHeight;
 extern float cameraX;
 extern float cameraY;
+extern int lastTexture;
 
 @class Sprite;
 extern Sprite* sprites[NUM_SPRITES];

@@ -130,12 +130,8 @@
     float bgz = 2;
     float bgx = floor(cameraX/bgz/512.0)*512.0;
     float bgy = floor(cameraY/bgz/512.0)*512.0;
-    for(int j=-4;j<=4;j++) for(int i=-4;i<=4;i++) {
-        if(bgy+j*512 > 256) {
-            [sprites[SPRITE_BACKGROUND] drawWithX:bgx+i*512 y:bgy+j*512 z:bgz flip:false];
-        } else {
-            [sprites[SPRITE_BACKGROUND] drawWithX:bgx+i*512 y:bgy+j*512 z:bgz flip:false];
-        }
+    for(int j=-4;j<=4;j++) for(int i=-1;i<=1;i++) {
+        [sprites[SPRITE_BACKGROUND] drawWithX:bgx+i*512 y:bgy+j*512 z:bgz flip:false];
     }
     
     float fadeLimit = cameraY-DEATH_LIMIT;

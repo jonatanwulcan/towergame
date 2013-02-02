@@ -157,7 +157,18 @@ int levelData2Tile[] = {
                 floorFade = 3;
             }
             
-            switch([self tileTypeWithX:x y:y]) {
+            // TILE TYPE WITH X Y
+            int ldx = floor(x/32.0)+10;
+            int ldy = 55-floor(y/32.0);
+            int tileType;
+            if(ldx < 0 || ldx >= 20 || ldy < 0 || ldy >= 80) {
+                tileType = 0;
+            } else {
+                tileType = levelData2Tile[levelData[ldy*20+ldx]];
+            }
+
+            
+            switch(tileType) {
                 case TILE_BASEFLOOR:
                     [sprites[SPRITE_FLOOR_0] drawWithX:x y:y z:1 flip:false];
                     break;
