@@ -146,45 +146,79 @@ GLfloat vertexData[] =
     glTexParameteri(_texture1.target, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     
     // Setup sprites
-    sprites[SPRITE_FLOOR_0] = [[Sprite alloc] initWithTextureX:8.0 textureY:248.0 width:16 height:16 flipX:false];
-    sprites[SPRITE_FLOOR_1] = [[Sprite alloc] initWithTextureX:8 textureY:248-16 width:16 height:16 flipX:false];
-    sprites[SPRITE_FLOOR_2] = [[Sprite alloc] initWithTextureX:8+16 textureY:248-16 width:16 height:16 flipX:false];
-    sprites[SPRITE_FLOOR_3] = [[Sprite alloc] initWithTextureX:8+32 textureY:248-16 width:16 height:16 flipX:false];
+    sprites[SPRITE_FLOOR_0] = [[Sprite alloc] initWithTextureX:8.0 textureY:248.0 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_FLOOR_1] = [[Sprite alloc] initWithTextureX:8 textureY:248-16 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_FLOOR_2] = [[Sprite alloc] initWithTextureX:8+16 textureY:248-16 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_FLOOR_3] = [[Sprite alloc] initWithTextureX:8+32 textureY:248-16 width:16 height:16 flipX:false rotation:0];
     
-    sprites[SPRITE_FLOOR_LEFT_0] = [[Sprite alloc] initWithTextureX:8+32 textureY:248 width:16 height:16 flipX:false];
-    sprites[SPRITE_FLOOR_LEFT_1] = [[Sprite alloc] initWithTextureX:8 textureY:248-32 width:16 height:16 flipX:false];
-    sprites[SPRITE_FLOOR_LEFT_2] = [[Sprite alloc] initWithTextureX:8+16 textureY:248-32 width:16 height:16 flipX:false];
-    sprites[SPRITE_FLOOR_LEFT_3] = [[Sprite alloc] initWithTextureX:8+32 textureY:248-32 width:16 height:16 flipX:false];
+    sprites[SPRITE_FLOOR_LEFT_0] = [[Sprite alloc] initWithTextureX:8+32 textureY:248 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_FLOOR_LEFT_1] = [[Sprite alloc] initWithTextureX:8 textureY:248-32 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_FLOOR_LEFT_2] = [[Sprite alloc] initWithTextureX:8+16 textureY:248-32 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_FLOOR_LEFT_3] = [[Sprite alloc] initWithTextureX:8+32 textureY:248-32 width:16 height:16 flipX:false rotation:0];
     
-    sprites[SPRITE_FLOOR_RIGHT_0] = [[Sprite alloc] initWithTextureX:8+32 textureY:248 width:16 height:16 flipX:true];
-    sprites[SPRITE_FLOOR_RIGHT_1] = [[Sprite alloc] initWithTextureX:8 textureY:248-32 width:16 height:16 flipX:true];
-    sprites[SPRITE_FLOOR_RIGHT_2] = [[Sprite alloc] initWithTextureX:8+16 textureY:248-32 width:16 height:16 flipX:true];
-    sprites[SPRITE_FLOOR_RIGHT_3] = [[Sprite alloc] initWithTextureX:8+32 textureY:248-32 width:16 height:16 flipX:true];
+    sprites[SPRITE_FLOOR_RIGHT_0] = [[Sprite alloc] initWithTextureX:8+32 textureY:248 width:16 height:16 flipX:true rotation:0];
+    sprites[SPRITE_FLOOR_RIGHT_1] = [[Sprite alloc] initWithTextureX:8 textureY:248-32 width:16 height:16 flipX:true rotation:0];
+    sprites[SPRITE_FLOOR_RIGHT_2] = [[Sprite alloc] initWithTextureX:8+16 textureY:248-32 width:16 height:16 flipX:true rotation:0];
+    sprites[SPRITE_FLOOR_RIGHT_3] = [[Sprite alloc] initWithTextureX:8+32 textureY:248-32 width:16 height:16 flipX:true rotation:0];
 
-    
-    sprites[SPRITE_BACKGROUND] = [[Sprite alloc] initWithTextureX:192.0 textureY:192.0 width:128 height:128 flipX:false];
-    sprites[SPRITE_WALL_LEFT] = [[Sprite alloc] initWithTextureX:8.0+16 textureY:248.0 width:16 height:16 flipX:false];
-    sprites[SPRITE_WALL_RIGHT] = [[Sprite alloc] initWithTextureX:8.0+16 textureY:248.0 width:16 height:16 flipX:true];
+    sprites[SPRITE_CORNER_LEFT_0] = [[Sprite alloc] initWithTextureX:8+48 textureY:248 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_CORNER_LEFT_1] = [[Sprite alloc] initWithTextureX:8 textureY:248-48 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_CORNER_LEFT_2] = [[Sprite alloc] initWithTextureX:8+16 textureY:248-48 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_CORNER_LEFT_3] = [[Sprite alloc] initWithTextureX:8+32 textureY:248-48 width:16 height:16 flipX:false rotation:0];
 
-    sprites[SPRITE_PLAYER_WALK_0] = [[Sprite alloc] initWithTextureX:-236.0+40*0 textureY:236.0 width:40 height:40 flipX:false];
-    sprites[SPRITE_PLAYER_WALK_1] = [[Sprite alloc] initWithTextureX:-236.0+40*1 textureY:236.0 width:40 height:40 flipX:false];
-    sprites[SPRITE_PLAYER_WALK_2] = [[Sprite alloc] initWithTextureX:-236.0+40*0 textureY:236.0 width:40 height:40 flipX:false];
-    sprites[SPRITE_PLAYER_WALK_3] = [[Sprite alloc] initWithTextureX:-236.0+40*2 textureY:236.0 width:40 height:40 flipX:false];
-    sprites[SPRITE_PLAYER_WALK_4] = [[Sprite alloc] initWithTextureX:-236.0+40*3 textureY:236.0 width:40 height:40 flipX:false];
-    sprites[SPRITE_PLAYER_WALK_5] = [[Sprite alloc] initWithTextureX:-236.0+40*4 textureY:236.0 width:40 height:40 flipX:false];
-    sprites[SPRITE_PLAYER_WALK_6] = [[Sprite alloc] initWithTextureX:-236.0+40*3 textureY:236.0 width:40 height:40 flipX:false];
-    sprites[SPRITE_PLAYER_WALK_7] = [[Sprite alloc] initWithTextureX:-236.0+40*2 textureY:236.0 width:40 height:40 flipX:false];
+    sprites[SPRITE_CORNER_RIGHT_0] = [[Sprite alloc] initWithTextureX:8+48 textureY:248 width:16 height:16 flipX:true rotation:0];
+    sprites[SPRITE_CORNER_RIGHT_1] = [[Sprite alloc] initWithTextureX:8 textureY:248-48 width:16 height:16 flipX:true rotation:0];
+    sprites[SPRITE_CORNER_RIGHT_2] = [[Sprite alloc] initWithTextureX:8+16 textureY:248-48 width:16 height:16 flipX:true rotation:0];
+    sprites[SPRITE_CORNER_RIGHT_3] = [[Sprite alloc] initWithTextureX:8+32 textureY:248-48 width:16 height:16 flipX:true rotation:0];
     
-    sprites[SPRITE_PLAYER_JUMP] = [[Sprite alloc] initWithTextureX:-236.0+40*5 textureY:236.0 width:40 height:40 flipX:false];
-    sprites[SPRITE_PLAYER_FALL] = [[Sprite alloc] initWithTextureX:-236.0+40*0 textureY:236.0-40 width:40 height:40 flipX:false];
+    sprites[SPRITE_BACKGROUND] = [[Sprite alloc] initWithTextureX:192.0 textureY:192.0 width:128 height:128 flipX:false rotation:0];
+    sprites[SPRITE_WALL_LEFT] = [[Sprite alloc] initWithTextureX:8.0+16 textureY:248.0 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_WALL_RIGHT] = [[Sprite alloc] initWithTextureX:8.0+16 textureY:248.0 width:16 height:16 flipX:true rotation:0];
     
-    sprites[SPRITE_PLAYER_PRIOUETTE_0] = [[Sprite alloc] initWithTextureX:-236.0+40*5 textureY:236.0-40*0 width:40 height:40 flipX:true];
-    sprites[SPRITE_PLAYER_PRIOUETTE_1] = [[Sprite alloc] initWithTextureX:-236.0+40*1 textureY:236.0-40*1 width:40 height:40 flipX:true];
-    sprites[SPRITE_PLAYER_PRIOUETTE_2] = [[Sprite alloc] initWithTextureX:-236.0+40*5 textureY:236.0-40*0 width:40 height:40 flipX:false];
-    sprites[SPRITE_PLAYER_PRIOUETTE_3] = [[Sprite alloc] initWithTextureX:-236.0+40*2 textureY:236.0-40*1 width:40 height:40 flipX:true];
+    sprites[SPRITE_BASEFLOOR] = [[Sprite alloc] initWithTextureX:8.0+80 textureY:248.0 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_BASECORNER_LEFT] = [[Sprite alloc] initWithTextureX:8.0+80-16 textureY:248.0 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_BASECORNER_RIGHT] = [[Sprite alloc] initWithTextureX:8.0+80+16 textureY:248.0 width:16 height:16 flipX:false rotation:0];
 
-    sprites[SPRITE_PLAYER_DEAD_0] = [[Sprite alloc] initWithTextureX:-236.0+40*3 textureY:236.0-40*1 width:40 height:40 flipX:true];
-    sprites[SPRITE_PLAYER_DEAD_1] = [[Sprite alloc] initWithTextureX:-236.0+40*4 textureY:236.0-40*1 width:40 height:40 flipX:true];
+    sprites[SPRITE_PLAYER_WALK_0] = [[Sprite alloc] initWithTextureX:-236.0+40*0 textureY:236.0 width:40 height:40 flipX:false rotation:0];
+    sprites[SPRITE_PLAYER_WALK_1] = [[Sprite alloc] initWithTextureX:-236.0+40*1 textureY:236.0 width:40 height:40 flipX:false rotation:0];
+    sprites[SPRITE_PLAYER_WALK_2] = [[Sprite alloc] initWithTextureX:-236.0+40*0 textureY:236.0 width:40 height:40 flipX:false rotation:0];
+    sprites[SPRITE_PLAYER_WALK_3] = [[Sprite alloc] initWithTextureX:-236.0+40*2 textureY:236.0 width:40 height:40 flipX:false rotation:0];
+    sprites[SPRITE_PLAYER_WALK_4] = [[Sprite alloc] initWithTextureX:-236.0+40*3 textureY:236.0 width:40 height:40 flipX:false rotation:0];
+    sprites[SPRITE_PLAYER_WALK_5] = [[Sprite alloc] initWithTextureX:-236.0+40*4 textureY:236.0 width:40 height:40 flipX:false rotation:0];
+    sprites[SPRITE_PLAYER_WALK_6] = [[Sprite alloc] initWithTextureX:-236.0+40*3 textureY:236.0 width:40 height:40 flipX:false rotation:0];
+    sprites[SPRITE_PLAYER_WALK_7] = [[Sprite alloc] initWithTextureX:-236.0+40*2 textureY:236.0 width:40 height:40 flipX:false rotation:0];
+    
+    sprites[SPRITE_PLAYER_JUMP] = [[Sprite alloc] initWithTextureX:-236.0+40*5 textureY:236.0 width:40 height:40 flipX:false rotation:0];
+    sprites[SPRITE_PLAYER_FALL] = [[Sprite alloc] initWithTextureX:-236.0+40*0 textureY:236.0-40 width:40 height:40 flipX:false rotation:0];
+    
+    sprites[SPRITE_PLAYER_PRIOUETTE_0] = [[Sprite alloc] initWithTextureX:-236.0+40*5 textureY:236.0-40*0 width:40 height:40 flipX:true rotation:0];
+    sprites[SPRITE_PLAYER_PRIOUETTE_1] = [[Sprite alloc] initWithTextureX:-236.0+40*1 textureY:236.0-40*1 width:40 height:40 flipX:true rotation:0];
+    sprites[SPRITE_PLAYER_PRIOUETTE_2] = [[Sprite alloc] initWithTextureX:-236.0+40*5 textureY:236.0-40*0 width:40 height:40 flipX:false rotation:0];
+    sprites[SPRITE_PLAYER_PRIOUETTE_3] = [[Sprite alloc] initWithTextureX:-236.0+40*2 textureY:236.0-40*1 width:40 height:40 flipX:true rotation:0];
+
+    sprites[SPRITE_PLAYER_DEAD_0] = [[Sprite alloc] initWithTextureX:-236.0+40*3 textureY:236.0-40*1 width:40 height:40 flipX:true rotation:0];
+    sprites[SPRITE_PLAYER_DEAD_1] = [[Sprite alloc] initWithTextureX:-236.0+40*4 textureY:236.0-40*1 width:40 height:40 flipX:true rotation:0];
+    
+    sprites[SPRITE_SPIKE_RIGHT_0] = [[Sprite alloc] initWithTextureX:-8 textureY:248 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_SPIKE_RIGHT_1] = [[Sprite alloc] initWithTextureX:-8 textureY:232 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_SPIKE_RIGHT_2] = [[Sprite alloc] initWithTextureX:-8 textureY:216 width:16 height:16 flipX:false rotation:0];
+    sprites[SPRITE_SPIKE_RIGHT_3] = [[Sprite alloc] initWithTextureX:-8 textureY:232 width:16 height:16 flipX:false rotation:0];
+    
+    sprites[SPRITE_SPIKE_LEFT_0] = [[Sprite alloc] initWithTextureX:-8 textureY:248 width:16 height:16 flipX:true rotation:0];
+    sprites[SPRITE_SPIKE_LEFT_1] = [[Sprite alloc] initWithTextureX:-8 textureY:232 width:16 height:16 flipX:true rotation:0];
+    sprites[SPRITE_SPIKE_LEFT_2] = [[Sprite alloc] initWithTextureX:-8 textureY:216 width:16 height:16 flipX:true rotation:0];
+    sprites[SPRITE_SPIKE_LEFT_3] = [[Sprite alloc] initWithTextureX:-8 textureY:232 width:16 height:16 flipX:true rotation:0];
+
+    sprites[SPRITE_SPIKE_UP_0] = [[Sprite alloc] initWithTextureX:-8 textureY:248 width:16 height:16 flipX:false rotation:M_PI/2];
+    sprites[SPRITE_SPIKE_UP_1] = [[Sprite alloc] initWithTextureX:-8 textureY:232 width:16 height:16 flipX:false rotation:M_PI/2];
+    sprites[SPRITE_SPIKE_UP_2] = [[Sprite alloc] initWithTextureX:-8 textureY:216 width:16 height:16 flipX:false rotation:M_PI/2];
+    sprites[SPRITE_SPIKE_UP_3] = [[Sprite alloc] initWithTextureX:-8 textureY:232 width:16 height:16 flipX:false rotation:M_PI/2];
+
+    sprites[SPRITE_SPIKE_DOWN_0] = [[Sprite alloc] initWithTextureX:-8 textureY:248 width:16 height:16 flipX:false rotation:-M_PI/2];
+    sprites[SPRITE_SPIKE_DOWN_1] = [[Sprite alloc] initWithTextureX:-8 textureY:232 width:16 height:16 flipX:false rotation:-M_PI/2];
+    sprites[SPRITE_SPIKE_DOWN_2] = [[Sprite alloc] initWithTextureX:-8 textureY:216 width:16 height:16 flipX:false rotation:-M_PI/2];
+    sprites[SPRITE_SPIKE_DOWN_3] = [[Sprite alloc] initWithTextureX:-8 textureY:232 width:16 height:16 flipX:false rotation:-M_PI/2];
+
 }
 
 - (void)tearDownGL

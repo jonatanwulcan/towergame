@@ -20,6 +20,7 @@
     int jumpCount;
     bool isDead;
     float currentBaseFloor;
+    bool cameraFall;
 }
 
 -(id) init;

@@ -11,120 +11,83 @@
 #import "Level.h"
 #import "Sprite.h"
 
-int levelData[] = {
-    2,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,4,5,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,4,5,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,4,1,1,1,1,1,1,1,3,
-    2,0,0,0,0,0,0,4,5,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,4,1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,4,5,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,4,1,1,1,1,1,1,1,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,1,1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,4,1,1,1,1,1,1,1,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,4,1,1,1,1,1,1,1,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,4,1,1,1,1,1,1,1,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,4,1,1,1,1,1,1,1,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,4,1,1,1,1,1,1,1,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,1,1,1,1,1,5,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,4,1,1,1,1,1,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,4,1,1,1,1,1,1,1,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,4,1,1,5,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,4,1,1,1,1,1,1,1,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,1,1,1,1,1,1,5,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,3,
-    
-    
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-    2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
-};
-
-int levelData2Tile[] = {
-    0,
-    TILE_FLOOR,
-    TILE_WALL_LEFT,
-    TILE_WALL_RIGHT,
-    TILE_FLOOR_LEFT,
-    TILE_FLOOR_RIGHT,
-    TILE_BASEFLOOR
-};
-
 @implementation Level
 
 - (id) initWithLevelNumber:(int) levelNumber {
     self = [super init];
+    
+    NSMutableString* levelString = [NSMutableString stringWithCapacity:100];
+    NSString* path;
+    NSString* levelStringPart;
+    
+    path = [[NSBundle mainBundle] pathForResource:@"level01" ofType:@"txt"];
+    levelStringPart = [NSString stringWithContentsOfFile:path
+                                                encoding:NSUTF8StringEncoding
+                                                   error:NULL];
+    [levelString appendString:levelStringPart];
+
+    path = [[NSBundle mainBundle] pathForResource:@"level00" ofType:@"txt"];
+    levelStringPart = [NSString stringWithContentsOfFile:path
+                                                encoding:NSUTF8StringEncoding
+                                                   error:NULL];
+    [levelString appendString:levelStringPart];
+
+    int wpos = 0;
+    levelData = malloc(levelString.length);
+    for(int i=0;i<levelString.length;i++) {
+        unichar cc = [levelString characterAtIndex:i];
+        switch(cc) {
+            case '\r':
+            case '\n':
+                break;
+            case '_':
+                levelData[wpos++] = TILE_FLOOR;
+                break;
+            case '[':
+                levelData[wpos++] = TILE_FLOOR_LEFT;
+                break;
+            case ']':
+                levelData[wpos++] = TILE_FLOOR_RIGHT;
+                break;
+            case '(':
+                levelData[wpos++] = TILE_CORNER_LEFT;
+                break;
+            case ')':
+                levelData[wpos++] = TILE_CORNER_RIGHT;
+                break;
+            case '=':
+                levelData[wpos++] = TILE_BASEFLOOR;
+                break;
+            case '{':
+                levelData[wpos++] = TILE_BASECORNER_LEFT;
+                break;
+            case '}':
+                levelData[wpos++] = TILE_BASECORNER_RIGHT;
+                break;
+            case '/':
+                levelData[wpos++] = TILE_WALL_LEFT;
+                break;
+            case '\\':
+                levelData[wpos++] = TILE_WALL_RIGHT;
+                break;
+            case '>':
+                levelData[wpos++] = TILE_SPIKE_RIGHT;
+                break;
+            case '<':
+                levelData[wpos++] = TILE_SPIKE_LEFT;
+                break;
+            case 'v':
+                levelData[wpos++] = TILE_SPIKE_DOWN;
+                break;
+            case '^':
+                levelData[wpos++] = TILE_SPIKE_UP;
+                break;
+            default:
+                levelData[wpos++] = TILE_NONE;
+                break;
+        }
+    }
+    levelSize = wpos;
     return self;
 }
 
@@ -133,44 +96,47 @@ int levelData2Tile[] = {
     int y=floor(fy/32.0);
     
     int ldx = x+10;
-    int ldy = 55-y;
-    if(ldx < 0 || ldx >= 20 || ldy < 0 || ldy >= 80) {
-        return 0;
+    int ldy = levelSize/20-LEVEL_OFFSET-y;
+    if(ldx < 0 || ldx >= 20 || ldy < 0 || ldy >= levelSize/20) {
+        return TILE_NONE;
     }
-    return levelData2Tile[levelData[ldy*20+ldx]];
+    return levelData[ldy*20+ldx];
 }
 
-- (void) drawWithFadeLimit:(float) fadeLimit {
+- (void) drawWithFadeLimit:(float) fadeLimit baseFloor:(float) baseFloor frameNumber:(int) frameNumber {
     int cx = [self round:cameraX];
     int cy = [self round:cameraY];
+    int spikeAnim = (frameNumber/20)%4;
     
     for(int y=cy-640;y<=cy+640;y+=32) {
         for(int x=cx-320;x<=cx+320;x+=32) {
             int floorFade = 0;
-            if(fadeLimit - 1 > y) {
-                floorFade = 1;
-            }
-            if(fadeLimit - 15 > y) {
-                floorFade = 2;
-            }
-            if(fadeLimit - 30 > y) {
-                floorFade = 3;
+            if(y > baseFloor) {
+                if(fadeLimit - 1 > y) {
+                    floorFade = 1;
+                }
+                if(fadeLimit - 15 > y) {
+                    floorFade = 2;
+                }
+                if(fadeLimit - 30 > y) {
+                    floorFade = 3;
+                }
             }
             
             // TILE TYPE WITH X Y
             int ldx = floor(x/32.0)+10;
-            int ldy = 55-floor(y/32.0);
+            int ldy = levelSize/20-LEVEL_OFFSET-floor(y/32.0);
             int tileType;
-            if(ldx < 0 || ldx >= 20 || ldy < 0 || ldy >= 80) {
-                tileType = 0;
+            if(ldx < 0 || ldx >= 20 || ldy < 0 || ldy >= levelSize/20) {
+                tileType = TILE_NONE;
             } else {
-                tileType = levelData2Tile[levelData[ldy*20+ldx]];
+                tileType = levelData[ldy*20+ldx];
             }
 
             
             switch(tileType) {
                 case TILE_BASEFLOOR:
-                    [sprites[SPRITE_FLOOR_0] drawWithX:x y:y z:1 flip:false];
+                    [sprites[SPRITE_BASEFLOOR] drawWithX:x y:y z:1 flip:false];
                     break;
                 case TILE_FLOOR:
                     [sprites[SPRITE_FLOOR_0+floorFade] drawWithX:x y:y z:1 flip:false];
@@ -187,6 +153,31 @@ int levelData2Tile[] = {
                 case TILE_WALL_RIGHT:
                     [sprites[SPRITE_WALL_RIGHT] drawWithX:x y:y z:1 flip:false];
                     break;
+                case TILE_CORNER_LEFT:
+                    [sprites[SPRITE_CORNER_LEFT_0+floorFade] drawWithX:x y:y z:1 flip:false];
+                    break;
+                case TILE_CORNER_RIGHT:
+                    [sprites[SPRITE_CORNER_RIGHT_0+floorFade] drawWithX:x y:y z:1 flip:false];
+                    break;
+                case TILE_BASECORNER_LEFT:
+                    [sprites[SPRITE_BASECORNER_LEFT] drawWithX:x y:y z:1 flip:false];
+                    break;
+                case TILE_BASECORNER_RIGHT:
+                    [sprites[SPRITE_BASECORNER_RIGHT] drawWithX:x y:y z:1 flip:false];
+                    break;
+                case TILE_SPIKE_RIGHT:
+                    [sprites[SPRITE_SPIKE_RIGHT_0+spikeAnim] drawWithX:x y:y z:1 flip:false];
+                    break;
+                case TILE_SPIKE_LEFT:
+                    [sprites[SPRITE_SPIKE_LEFT_0+spikeAnim] drawWithX:x y:y z:1 flip:false];
+                    break;
+                case TILE_SPIKE_UP:
+                    [sprites[SPRITE_SPIKE_UP_0+spikeAnim] drawWithX:x y:y z:1 flip:false];
+                    break;
+                case TILE_SPIKE_DOWN:
+                    [sprites[SPRITE_SPIKE_DOWN_0+spikeAnim] drawWithX:x y:y z:1 flip:false];
+                    break;
+
             }
         }
     }

@@ -25,7 +25,8 @@
     cameraTargetY = 0;
     cameraVY = 0;
     isDead = false;
-    currentBaseFloor = -200;
+    currentBaseFloor = -32*LEVEL_OFFSET+32+16;
+    cameraFall = false;
 
     return self;
 }
@@ -36,11 +37,18 @@
     // Is dead?
     if(!isDead && playerY < cameraTargetY-DEATH_LIMIT) {
         isDead = true;
-        cameraTargetY = currentBaseFloor+CAMERA_ADD;
     }
     
-    if(isDead && playerY < currentBaseFloor+32) {
+    if(isDead) {
+        cameraFall = true;
+        cameraTargetY = currentBaseFloor+CAMERA_ADD;        
+    }
+    
+    if(isDead && playerY <= currentBaseFloor+32+32) {
         isDead = false;
+    }
+    if(!isDead && cameraFall && cameraY == cameraTargetY) {
+        cameraFall = false;
     }
     
     // Gravity
@@ -57,34 +65,50 @@
     for(int y=cy-64;y<=cy+64;y+=32) {
         for(int x=cx-64;x<=cx+64;x+=32) {
             bool isColliding = fabs(newPlayerX-x) < 16+32/2 && fabs(newPlayerY-y) < 16+64/2;
-            if(!isColliding) continue;
+            bool isCollidingBigHitbox = fabs(newPlayerX-x) < 16+32/2 && fabs(newPlayerY-y) < 16+96/2;
             bool isCollidingNoYMovement = fabs(newPlayerX-x) < 16+32/2 && fabs(playerY-y) < 16+64/2;
+
+            if(!isColliding && !isCollidingBigHitbox) continue;
             
             switch([level tileTypeWithX:x y:y]) {
                 case TILE_BASEFLOOR:
-                    if(playerVY < 0 && !isCollidingNoYMovement) {
+                    if(playerVY < 0 && !isCollidingNoYMovement && isColliding) {
                         playerY = y + 16 + 32;
                         if(y+CAMERA_ADD > cameraTargetY) cameraTargetY = y+CAMERA_ADD;
                         playerVY = 0;
                         jumpCount = 0;
                     }
+                    if(playerY >= y+16+32) {
+                        currentBaseFloor = cy;
+                    }
                     break;
-
                 case TILE_FLOOR:
                 case TILE_FLOOR_LEFT:
                 case TILE_FLOOR_RIGHT:
-                    if(playerVY < 0 && !isCollidingNoYMovement && !isDead && y > cameraTargetY - DEATH_LIMIT ) {
+                    if(playerVY < 0 && !isCollidingNoYMovement && !isDead && y > cameraTargetY - DEATH_LIMIT &&isColliding) {
                         playerY = y + 16 + 32;
                         if(y+CAMERA_ADD > cameraTargetY) cameraTargetY = y+CAMERA_ADD;
                         playerVY = 0;
                         jumpCount = 0;
                     }
                     break;
+                case TILE_CORNER_LEFT:
                 case TILE_WALL_LEFT:
-                    playerVX = WALK_SPEED;
+                    if(isColliding) {
+                        playerVX = WALK_SPEED;
+                    }
                     break;
+                case TILE_CORNER_RIGHT:
                 case TILE_WALL_RIGHT:
-                    playerVX = -WALK_SPEED;
+                    if(isColliding) {
+                        playerVX = -WALK_SPEED;
+                    }
+                    break;
+                case TILE_SPIKE_RIGHT:
+                case TILE_SPIKE_LEFT:
+                case TILE_SPIKE_UP:
+                case TILE_SPIKE_DOWN:
+                    isDead = true;
                     break;
             }
         }
@@ -95,10 +119,15 @@
     playerY = playerY + playerVY;
     
     // Update cameraVY
-    if(isDead) {
+    if(cameraFall) {
         cameraVY += GRAVITY;
         if(cameraVY < CAMERA_MAX_SPEED_FALL) {
             cameraVY = CAMERA_MAX_SPEED_FALL;
+        }
+        cameraY += cameraVY;
+        if(cameraY < currentBaseFloor+CAMERA_ADD && cameraFall) {
+            cameraY = cameraTargetY;
+            cameraVY = 0;
         }
     } else {
         float camSpeed = 0.1;
@@ -115,29 +144,22 @@
         } else if(cameraWillHitY<cameraTargetY) {
             cameraVY += camSpeed;
         }
+        cameraY += cameraVY;
     }
-
-    // Update cameraY
-    cameraY += cameraVY;
-    if(cameraY < currentBaseFloor+CAMERA_ADD) {
-        cameraY = cameraTargetY;
-        cameraVY = 0;
-    }
-
 }
 
 -(void) draw {
     float bgz = 2;
-    float bgx = floor(cameraX/bgz/512.0)*512.0;
-    float bgy = floor(cameraY/bgz/512.0)*512.0;
-    for(int j=-4;j<=4;j++) for(int i=-1;i<=1;i++) {
+    float bgx = floor(cameraX/512.0)*512.0;
+    float bgy = floor(cameraY/512.0)*512.0;
+    for(int j=4;j>=-4;j--) for(int i=-1;i<=1;i++) {
         [sprites[SPRITE_BACKGROUND] drawWithX:bgx+i*512 y:bgy+j*512 z:bgz flip:false];
     }
     
     float fadeLimit = cameraY-DEATH_LIMIT;
     if(isDead)
         fadeLimit = playerY+64;
-    [level drawWithFadeLimit:fadeLimit];
+    [level drawWithFadeLimit:fadeLimit baseFloor:currentBaseFloor frameNumber:frameNum];
     [self drawPlayer];
 }
 

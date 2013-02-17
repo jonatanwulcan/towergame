@@ -7,11 +7,12 @@
 //
 
 @interface Level : NSObject {
-    
+    char *levelData;
+    int levelSize;
 }
 
 - (id) initWithLevelNumber:(int) levelNumber;
-- (void) drawWithFadeLimit:(float) fadeLimit;
+- (void) drawWithFadeLimit:(float) fadeLimit baseFloor:(float) baseFloor frameNumber:(int) frameNumber;
 - (int) round:(float) f;
 - (int) tileTypeWithX:(int) fx y:(int) fy;
 @end

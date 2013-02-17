@@ -12,18 +12,19 @@
 
 @implementation Sprite
 
--(id) initWithTextureX:(float) _textureX textureY:(float) _textureY width:(float) _width height:(float) _height flipX:(bool) _flipX {
+-(id) initWithTextureX:(float) _textureX textureY:(float) _textureY width:(float) _width height:(float) _height flipX:(bool) _flipX rotation:(float) _rotation {
     self = [super init];
     textureX = _textureX;
     textureY = _textureY;
     width = _width;
     height = _height;
-    textureScaleX = _flipX?-1.0:1.0;
+    rotation = _rotation;
+    flipX = _flipX;
     return self;
 }
 
 -(void) drawWithX:(float) x y:(float) y z:(float) z flip:(bool) flip {
-    if(fabs(x-cameraX) > 640+width*2 || fabs(y-cameraY) > 960+height*2) {
+    if(fabs((x-cameraX)/z) > screenWidth+width || fabs((y-cameraY)/z) > screenHeight+height) {
         return;
     }
     
@@ -39,11 +40,10 @@
     };
     glUniformMatrix4fv(uniforms[UNIFORM_POSITION_MATRIX], 1, 0, positionMatrix);
     
-    float tsx = (flip?-1:1)*textureScaleX*width;
-    float tsy = height;
+    float fx = (flipX^flip)?-1:1;
     float textureMatrix[] = {
-        tsx/512.0, 0, 0, 0,
-        0, -tsy/512.0, 0, 0,
+        width/512.0*fx*cos(rotation), height/512.0*fx*sin(rotation), 0, 0,
+        width/512.0*sin(rotation), -height/512.0*cos(rotation), 0, 0,
         0, 0, 1, 0,
         0.5+textureX/512.0, 0.5-textureY/512.0, 0, 1,
     };
@@ -51,8 +51,8 @@
     glUniformMatrix4fv(uniforms[UNIFORM_TEXTURE_MATRIX], 1, 0, textureMatrix);
     
     int texture = 0;
-    if(y > 256+1024) {
-        texture = 0;
+    if(y > 256+512*2) {
+        texture = 1;
     }
     
     if(lastTexture != texture) {

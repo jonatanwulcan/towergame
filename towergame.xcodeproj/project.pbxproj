@@ -14,8 +14,8 @@
 		930E6D471696085200629EC9 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D461696085200629EC9 /* Icon-72@2x.png */; };
 		930E6D5A16A73F3A00629EC9 /* jumptower0.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D5816A73F3A00629EC9 /* jumptower0.png */; };
 		930E6D5B16A73F3A00629EC9 /* jumptower1.png in Resources */ = {isa = PBXBuildFile; fileRef = 930E6D5916A73F3A00629EC9 /* jumptower1.png */; };
-		93BB7CB216BD7A460005E259 /* level00.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93BB7CB116BD7A460005E259 /* level00.txt */; };
-		93BB7CB416BD7AEC0005E259 /* level01.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93BB7CB316BD7AEC0005E259 /* level01.txt */; };
+		935F6CA816C8188F00AED542 /* level00.txt in Resources */ = {isa = PBXBuildFile; fileRef = 935F6CA616C8188F00AED542 /* level00.txt */; };
+		935F6CA916C8188F00AED542 /* level01.txt in Resources */ = {isa = PBXBuildFile; fileRef = 935F6CA716C8188F00AED542 /* level01.txt */; };
 		93C69E1116907B64004F42FD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C69E1016907B64004F42FD /* UIKit.framework */; };
 		93C69E1316907B64004F42FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C69E1216907B64004F42FD /* Foundation.framework */; };
 		93C69E1516907B64004F42FD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C69E1416907B64004F42FD /* CoreGraphics.framework */; };
@@ -45,8 +45,8 @@
 		930E6D461696085200629EC9 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		930E6D5816A73F3A00629EC9 /* jumptower0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumptower0.png; sourceTree = "<group>"; };
 		930E6D5916A73F3A00629EC9 /* jumptower1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumptower1.png; sourceTree = "<group>"; };
-		93BB7CB116BD7A460005E259 /* level00.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level00.txt; sourceTree = "<group>"; };
-		93BB7CB316BD7AEC0005E259 /* level01.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level01.txt; sourceTree = "<group>"; };
+		935F6CA616C8188F00AED542 /* level00.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level00.txt; sourceTree = "<group>"; };
+		935F6CA716C8188F00AED542 /* level01.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level01.txt; sourceTree = "<group>"; };
 		93C69E0C16907B64004F42FD /* towergame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = towergame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C69E1016907B64004F42FD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		93C69E1216907B64004F42FD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		935F6CA416C8164300AED542 /* levels */ = {
+			isa = PBXGroup;
+			children = (
+				935F6CA616C8188F00AED542 /* level00.txt */,
+				935F6CA716C8188F00AED542 /* level01.txt */,
+			);
+			name = levels;
+			sourceTree = "<group>";
+		};
 		93986A3C169081310060DF24 /* textures */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,15 +109,6 @@
 				930E6D5916A73F3A00629EC9 /* jumptower1.png */,
 			);
 			name = textures;
-			sourceTree = "<group>";
-		};
-		93BB7CAF16BD7A240005E259 /* levels */ = {
-			isa = PBXGroup;
-			children = (
-				93BB7CB116BD7A460005E259 /* level00.txt */,
-				93BB7CB316BD7AEC0005E259 /* level01.txt */,
-			);
-			name = levels;
 			sourceTree = "<group>";
 		};
 		93C69E0116907B64004F42FD = {
@@ -143,7 +143,7 @@
 		93C69E1A16907B64004F42FD /* towergame */ = {
 			isa = PBXGroup;
 			children = (
-				93BB7CAF16BD7A240005E259 /* levels */,
+				935F6CA416C8164300AED542 /* levels */,
 				930E6D461696085200629EC9 /* Icon-72@2x.png */,
 				930E6D381696063500629EC9 /* Icon.png */,
 				930E6D391696063500629EC9 /* Icon-72.png */,
@@ -250,8 +250,8 @@
 				930E6D471696085200629EC9 /* Icon-72@2x.png in Resources */,
 				930E6D5A16A73F3A00629EC9 /* jumptower0.png in Resources */,
 				930E6D5B16A73F3A00629EC9 /* jumptower1.png in Resources */,
-				93BB7CB216BD7A460005E259 /* level00.txt in Resources */,
-				93BB7CB416BD7AEC0005E259 /* level01.txt in Resources */,
+				935F6CA816C8188F00AED542 /* level00.txt in Resources */,
+				935F6CA916C8188F00AED542 /* level01.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
