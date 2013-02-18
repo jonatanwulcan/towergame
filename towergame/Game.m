@@ -66,9 +66,10 @@
         for(int x=cx-64;x<=cx+64;x+=32) {
             bool isColliding = fabs(newPlayerX-x) < 16+32/2 && fabs(newPlayerY-y) < 16+64/2;
             bool isCollidingBigHitbox = fabs(newPlayerX-x) < 16+32/2 && fabs(newPlayerY-y) < 16+96/2;
+            bool isCollidingSmallHitbox = fabs(newPlayerX-x) < 8+32/2 && fabs(newPlayerY-y) < 8+64/2;
             bool isCollidingNoYMovement = fabs(newPlayerX-x) < 16+32/2 && fabs(playerY-y) < 16+64/2;
 
-            if(!isColliding && !isCollidingBigHitbox) continue;
+            if(!isCollidingBigHitbox) continue;
             
             switch([level tileTypeWithX:x y:y]) {
                 case TILE_BASEFLOOR:
@@ -108,7 +109,9 @@
                 case TILE_SPIKE_LEFT:
                 case TILE_SPIKE_UP:
                 case TILE_SPIKE_DOWN:
-                    isDead = true;
+                    if(isCollidingSmallHitbox) {
+                        isDead = true;
+                    }
                     break;
             }
         }
