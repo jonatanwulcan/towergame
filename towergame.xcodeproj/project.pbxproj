@@ -35,6 +35,14 @@
 		93C9A02516907C82006A7068 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C9A02016907C82006A7068 /* Game.m */; };
 		93C9A02616907C82006A7068 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C9A02216907C82006A7068 /* Level.m */; };
 		93C9A02716907C82006A7068 /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C9A02416907C82006A7068 /* Sprite.m */; };
+		93E758CB17087A7800DB0A47 /* level02.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93E758CA17087A7800DB0A47 /* level02.txt */; };
+		93E758D317087AC500DB0A47 /* level03.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93E758CC17087AC400DB0A47 /* level03.txt */; };
+		93E758D417087AC500DB0A47 /* level04.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93E758CD17087AC400DB0A47 /* level04.txt */; };
+		93E758D517087AC500DB0A47 /* level05.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93E758CE17087AC400DB0A47 /* level05.txt */; };
+		93E758D617087AC500DB0A47 /* level06.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93E758CF17087AC400DB0A47 /* level06.txt */; };
+		93E758D717087AC500DB0A47 /* level07.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93E758D017087AC500DB0A47 /* level07.txt */; };
+		93E758D817087AC500DB0A47 /* level08.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93E758D117087AC500DB0A47 /* level08.txt */; };
+		93E758D917087AC500DB0A47 /* level09.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93E758D217087AC500DB0A47 /* level09.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +83,14 @@
 		93C9A02216907C82006A7068 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		93C9A02316907C82006A7068 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 		93C9A02416907C82006A7068 /* Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sprite.m; sourceTree = "<group>"; };
+		93E758CA17087A7800DB0A47 /* level02.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level02.txt; sourceTree = "<group>"; };
+		93E758CC17087AC400DB0A47 /* level03.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level03.txt; sourceTree = "<group>"; };
+		93E758CD17087AC400DB0A47 /* level04.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level04.txt; sourceTree = "<group>"; };
+		93E758CE17087AC400DB0A47 /* level05.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level05.txt; sourceTree = "<group>"; };
+		93E758CF17087AC400DB0A47 /* level06.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level06.txt; sourceTree = "<group>"; };
+		93E758D017087AC500DB0A47 /* level07.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level07.txt; sourceTree = "<group>"; };
+		93E758D117087AC500DB0A47 /* level08.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level08.txt; sourceTree = "<group>"; };
+		93E758D217087AC500DB0A47 /* level09.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level09.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +112,16 @@
 		935F6CA416C8164300AED542 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				93E758CC17087AC400DB0A47 /* level03.txt */,
+				93E758CD17087AC400DB0A47 /* level04.txt */,
+				93E758CE17087AC400DB0A47 /* level05.txt */,
+				93E758CF17087AC400DB0A47 /* level06.txt */,
+				93E758D017087AC500DB0A47 /* level07.txt */,
+				93E758D117087AC500DB0A47 /* level08.txt */,
+				93E758D217087AC500DB0A47 /* level09.txt */,
 				935F6CA616C8188F00AED542 /* level00.txt */,
 				935F6CA716C8188F00AED542 /* level01.txt */,
+				93E758CA17087A7800DB0A47 /* level02.txt */,
 			);
 			name = levels;
 			sourceTree = "<group>";
@@ -252,6 +276,14 @@
 				930E6D5B16A73F3A00629EC9 /* jumptower1.png in Resources */,
 				935F6CA816C8188F00AED542 /* level00.txt in Resources */,
 				935F6CA916C8188F00AED542 /* level01.txt in Resources */,
+				93E758CB17087A7800DB0A47 /* level02.txt in Resources */,
+				93E758D317087AC500DB0A47 /* level03.txt in Resources */,
+				93E758D417087AC500DB0A47 /* level04.txt in Resources */,
+				93E758D517087AC500DB0A47 /* level05.txt in Resources */,
+				93E758D617087AC500DB0A47 /* level06.txt in Resources */,
+				93E758D717087AC500DB0A47 /* level07.txt in Resources */,
+				93E758D817087AC500DB0A47 /* level08.txt in Resources */,
+				93E758D917087AC500DB0A47 /* level09.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

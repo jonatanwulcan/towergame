@@ -17,20 +17,15 @@
     self = [super init];
     
     NSMutableString* levelString = [NSMutableString stringWithCapacity:100];
-    NSString* path;
-    NSString* levelStringPart;
     
-    path = [[NSBundle mainBundle] pathForResource:@"level01" ofType:@"txt"];
-    levelStringPart = [NSString stringWithContentsOfFile:path
+    for(int i=9;i>=0;i--) {
+        NSString* fileName = [NSString stringWithFormat:@"level%02i", i];
+        NSString* path = [[NSBundle mainBundle] pathForResource:fileName ofType:@"txt"];
+        NSString* levelStringPart = [NSString stringWithContentsOfFile:path
                                                 encoding:NSUTF8StringEncoding
                                                    error:NULL];
-    [levelString appendString:levelStringPart];
-
-    path = [[NSBundle mainBundle] pathForResource:@"level00" ofType:@"txt"];
-    levelStringPart = [NSString stringWithContentsOfFile:path
-                                                encoding:NSUTF8StringEncoding
-                                                   error:NULL];
-    [levelString appendString:levelStringPart];
+        [levelString appendString:levelStringPart];
+    }
 
     int wpos = 0;
     levelData = malloc(levelString.length);

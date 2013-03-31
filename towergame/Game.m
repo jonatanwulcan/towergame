@@ -66,7 +66,7 @@
         for(int x=cx-64;x<=cx+64;x+=32) {
             bool isColliding = fabs(newPlayerX-x) < 16+32/2 && fabs(newPlayerY-y) < 16+64/2;
             bool isCollidingBigHitbox = fabs(newPlayerX-x) < 16+32/2 && fabs(newPlayerY-y) < 16+96/2;
-            bool isCollidingSmallHitbox = fabs(newPlayerX-x) < 8+32/2 && fabs(newPlayerY-y) < 8+64/2;
+            bool isCollidingSmallHitbox = fabs(newPlayerX-x) < 32/2 && fabs(newPlayerY-y) < 64/2;
             bool isCollidingNoYMovement = fabs(newPlayerX-x) < 16+32/2 && fabs(playerY-y) < 16+64/2;
 
             if(!isCollidingBigHitbox) continue;
